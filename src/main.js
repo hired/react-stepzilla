@@ -324,6 +324,7 @@ export default class StepZilla extends Component {
 
           <button style={this.state.showNextBtn ? {} : this.hidden}
                   className={this.nextClassName}
+                  disabled={this.props.nextDisabled}
                   onClick={() => {this.next()}}>{this.state.nextStepText}</button>
         </div>
       </div>
@@ -342,5 +343,6 @@ StepZilla.defaultProps = {
   nextBtnOnLastStep: false,
   nextTextOnFinalActionStep: "Next",
   nextTextOnLastStep: "Next",
+  nextDisabled: false,
   hocValidationAppliedTo: []
 };

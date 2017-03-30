@@ -416,6 +416,7 @@ var StepZilla = function (_Component) {
             'button',
             { style: this.state.showNextBtn ? {} : this.hidden,
               className: this.nextClassName,
+              disabled: this.props.nextDisabled,
               onClick: function onClick() {
                 _this6.next();
               } },
@@ -443,5 +444,6 @@ StepZilla.defaultProps = {
   nextBtnOnLastStep: false,
   nextTextOnFinalActionStep: "Next",
   nextTextOnLastStep: "Next",
+  nextDisabled: false,
   hocValidationAppliedTo: []
 };
