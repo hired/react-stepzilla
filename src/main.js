@@ -200,6 +200,10 @@ export default class StepZilla extends Component {
         }
 
         if (proceed) {
+          if (this.props.onAfterStep) {
+            this.props.onAfterStep();
+          }
+          
           this.setNavState(this.state.compState + 1);
         }
       })
