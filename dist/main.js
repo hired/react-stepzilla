@@ -247,6 +247,10 @@ var StepZilla = function (_Component) {
         }
 
         if (proceed) {
+          if (_this4.props.onAfterStep) {
+            _this4.props.onAfterStep();
+          }
+
           _this4.setNavState(_this4.state.compState + 1);
         }
       }).catch(function (e) {

@@ -86,6 +86,9 @@ nextBtnOnLastStep: true | false
 // specify what text you want to display on the last step next button
 nextTextOnLastStep: 'Next'
 
+// provide a callback to fire on advancing to the next step
+onAfterStep: function()
+
 // provide a callback for clicking next on the final step
 onAfterLastStep: function()
 
