@@ -31,11 +31,11 @@ var StepZilla = function (_Component) {
     var _this = _possibleConstructorReturn(this, (StepZilla.__proto__ || Object.getPrototypeOf(StepZilla)).call(this, props));
 
     _this.state = {
-      showPreviousBtn: false,
+      showPreviousBtn: _this.shouldShowPrevBtnOnStart(),
       showNextBtn: true,
       compState: _this.props.startAtStep,
       navState: _this.getNavStates(0, _this.props.steps.length),
-      nextStepText: 'Next'
+      nextStepText: _this.initialNextBtnText()
     };
 
     _this.hidden = {
@@ -50,6 +50,22 @@ var StepZilla = function (_Component) {
   }
 
   _createClass(StepZilla, [{
+    key: 'shouldShowPrevBtnOnStart',
+    value: function shouldShowPrevBtnOnStart() {
+      return !!this.props.startAtStep && this.props.startAtStep > 0;
+    }
+  }, {
+    key: 'initialNextBtnText',
+    value: function initialNextBtnText() {
+      var initialNextText = 'Next';
+
+      if (this.props.startAtStep === this.props.steps.length - 1 && !!this.props.nextTextOnLastStep) {
+        initialNextText = this.props.nextTextOnLastStep;
+      }
+
+      return initialNextText;
+    }
+  }, {
     key: 'isLastStep',
     value: function isLastStep() {
       return this.props.steps.length - 1 === this.state.compState;
