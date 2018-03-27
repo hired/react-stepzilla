@@ -6,11 +6,11 @@ export default class StepZilla extends Component {
     super(props);
 
     this.state = {
-      showPreviousBtn: false,
+      showPreviousBtn: this.shouldShowPrevBtnOnStart(),
       showNextBtn: true,
       compState: this.props.startAtStep,
       navState: this.getNavStates(0, this.props.steps.length),
-      nextStepText: 'Next'
+      nextStepText: this.initialNextBtnText()
     };
 
     this.hidden = {
@@ -21,6 +21,20 @@ export default class StepZilla extends Component {
     this.nextClassName = this.props.nextClassName || 'btn btn-next btn-primary btn-lg pull-right';
 
     this.applyValidationFlagsToSteps();
+  }
+
+  shouldShowPrevBtnOnStart() {
+    return !!this.props.startAtStep && this.props.startAtStep > 0;
+  }
+
+  initialNextBtnText() {
+    let initialNextText = 'Next';
+
+    if (this.props.startAtStep === this.props.steps.length - 1 && !!this.props.nextTextOnLastStep) {
+      initialNextText = this.props.nextTextOnLastStep;
+    }
+
+    return initialNextText;
   }
 
   isLastStep() {
@@ -203,7 +217,7 @@ export default class StepZilla extends Component {
           if (this.props.onAfterStep) {
             this.props.onAfterStep();
           }
-          
+
           this.setNavState(this.state.compState + 1);
         }
       })
